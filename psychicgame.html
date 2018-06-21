@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Psychic Game!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
     <h1>The Psychic Game!</h1>
@@ -17,7 +19,7 @@
     </div>
 
     <br>
-    
+
     <div id="losses">
         Losses:
     </div>
@@ -32,61 +34,72 @@
     <div id="guessesMade">
         What Letters You've Guessed:
     </div>
-        <script>
-    
-    var alphabet = "abcdefghijklmnopqrstuvwxyz";
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
 
-// Variables set to 0
-var wins = 0;
-var losses = 0;
-var guesses = 10;
-var letGuessed = []
-var random;
+        var alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-//random letter generator
-random = alphabet[Math.floor(Math.random() * alphabet.length)];
-console.log(random);
-for (var i = 0; i < random.length; i++){}
+        // Variables set to 0
+        var wins = 0;
+        var losses = 0;
+        var guesses = 10;
+        var letGuessed = []
+        var random;
 
-//reset function duh
-function reset(){guesses = 10
-letGuessed = []
-random = alphabet[Math.floor(Math.random() * alphabet.length)]
-}
-reset()
+        //random letter generator
+        function getRandom() {
+            random = alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
 
-//tracking letters guessed aka letGuessed
-document.onkeyup = function(event){
-    var userGuess = event.key;
-    console.log(userGuess)
-    console.log(random)
-    
-//if/else statements?
+        getRandom();
+        console.log(random);
 
-if(userGuess === random){
-    wins++
-    reset()
-}
 
-else if (guesses ===0){
-    alert("Computer Guess was " + random)
-    losses++
-    reset()
-    console.log(losses)
-}
-else{
-    guesses--
-    letGuessed.splice(0,0,userGuess)
-    console.log(letGuessed)
-}
+        //reset function duh
+        function reset() {
+            guesses = 10
+            letGuessed = []
+            getRandom();
+        }
 
-$("#wins").text("Wins: " + wins)
-$("#losses").text("Losses: " + losses)
-$("#initial").text("Guesses Left: " + guesses)
-$("#guessesMade").text("What Letters You've Guessed: " + letGuessed)
-}
+        //tracking letters guessed aka letGuessed
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+            console.log(userGuess)
+            console.log(random)
+
+            //if/else statements?
+
+            if (userGuess === random) {
+                alert("Congrats but no prize for you! (sorry...)")
+                wins++
+                reset()
+                console.log(wins)
+            }
+
+            else if (guesses === 0) {
+                alert("Computer Guess was " + random)
+                losses++
+                reset()
+                console.log(losses)
+            }
+            else {
+                guesses--
+                letGuessed.splice(0, 0, userGuess)
+                console.log(letGuessed)
+            }
+
+            $("#wins").text("Wins: " + wins)
+            $("#losses").text("Losses: " + losses)
+            $("#initial").text("Guesses Left: " + guesses)
+            $("#guessesMade").text("What Letters You've Guessed: " + letGuessed)
+        }
 
     </script>
-    
+
 </body>
+
 </html>
