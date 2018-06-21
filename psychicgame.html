@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Psychic Game!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script> <!--Allows you to use the Jquery at the bottom of the page-->
 </head>
 <body>
 
@@ -44,14 +48,18 @@ var letGuessed = []
 var random;
 
 //random letter generator
-random = alphabet[Math.floor(Math.random() * alphabet.length)];
+function getRandom(){
+    random = alphabet[Math.floor(Math.random() * alphabet.length)];
+}
+
+getRandom(); /*The random character will only change when you call this function, so it won't change thorugh multiple guesses*/
 console.log(random);
-for (var i = 0; i < random.length; i++){}
+// for (var i = 0; i < random.length; i++){} //this is not used or needed
 
 //reset function duh
 function reset(){guesses = 10
 letGuessed = []
-random = alphabet[Math.floor(Math.random() * alphabet.length)]
+getRandom(); //We replaced the redunant random expression since we put it in a function definition above
 }
 reset()
 
