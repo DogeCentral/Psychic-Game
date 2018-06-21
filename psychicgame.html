@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Psychic Game!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <h1>The Psychic Game!</h1>
+
+    <h2>Guess the random letter and win a prize! (exclusion may apply...)</h2>
+
+    <div id="wins">
+        Wins:
+    </div>
+
+    <br>
+    
+    <div id="losses">
+        Losses:
+    </div>
+
+    <br>
+
+    <div id="initial">
+        Guesses Left:10
+    </div>
+    <br>
+
+    <div id="guessesMade">
+        What Letters You've Guessed:
+    </div>
+        <script>
+    
+    var alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+// Variables set to 0
+var wins = 0;
+var losses = 0;
+var guesses = 10;
+var letGuessed = []
+var random;
+
+//random letter generator
+random = alphabet[Math.floor(Math.random() * alphabet.length)];
+console.log(random);
+for (var i = 0; i < random.length; i++){}
+
+//reset function duh
+function reset(){guesses = 10
+letGuessed = []
+random = alphabet[Math.floor(Math.random() * alphabet.length)]
+}
+reset()
+
+//tracking letters guessed aka letGuessed
+document.onkeyup = function(event){
+    var userGuess = event.key;
+    console.log(userGuess)
+    console.log(random)
+    
+//if/else statements?
+
+if(userGuess === random){
+    wins++
+    reset()
+}
+
+else if (guesses ===0){
+    alert("Computer Guess was " + random)
+    losses++
+    reset()
+    console.log(losses)
+}
+else{
+    guesses--
+    letGuessed.splice(0,0,userGuess)
+    console.log(letGuessed)
+}
+
+$("#wins").text("Wins: " + wins)
+$("#losses").text("Losses: " + losses)
+$("#initial").text("Guesses Left: " + guesses)
+$("#guessesMade").text("What Letters You've Guessed: " + letGuessed)
+}
+
+    </script>
+    
+</body>
+</html>
